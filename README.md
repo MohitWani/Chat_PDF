@@ -85,4 +85,6 @@ Ensure that the following are installed on your system:
 #### RAG Input UI
 ![Project Screenshot](./assets/client.png)
 ---
+
+#### RAG output UI
 ![Project Screenshot](./assets/RAG_output.png)
