@@ -5,6 +5,7 @@ import os
 from langchain_community.embeddings import GPT4AllEmbeddings
 import tempfile
 
+#Load your docs.
 def load_document(pdf_file):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
         tmp_file.write(pdf_file.read())
@@ -13,7 +14,7 @@ def load_document(pdf_file):
     print("Document Loaded successfully...")
     return document
 
-
+#Split documents into chunks.
 def splitter(document):
     doc_split = RecursiveCharacterTextSplitter(
         chunk_size=500,
@@ -26,7 +27,7 @@ def splitter(document):
     print("Chunks are created successfully...")
     return docs
 
-
+#create vector store to retrieve documents.
 def create_vectorstore(docs, embedding=GPT4AllEmbeddings(), path_tosave='D:/my_projects/ScholarQuery/assignment'):
 
     vectorstore = FAISS.from_documents(docs, embedding)

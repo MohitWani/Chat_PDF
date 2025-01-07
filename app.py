@@ -4,11 +4,13 @@ from utils.retrieval import *
 from utils.generation import *
 from io import BytesIO
 
+#title of Page
 st.title("Chat with your PDF docs using Resoning and Action Prompt")
 
+#Upload your files.
 uploaded_file = st.file_uploader("Choose a PDF files", type="pdf", accept_multiple_files=True)
 
-
+#Perform RAG operations.
 if uploaded_file is not None:
     all_split_docs = []
     for file in uploaded_file:
@@ -20,10 +22,7 @@ if uploaded_file is not None:
     if all_split_docs:
         create_vectorstore(all_split_docs)
 
-    # embedding = GPT4AllEmbeddings()
-    # db = FAISS.load_local('D:/my_projects/ScholarQuery/assignment/faiss_index', embedding, allow_dangerous_deserialization=True)
-    # retrieval = db.as_retriever()
-
+    #If query is available then perform retrieval.
     query = st.text_input("Ask query to document.")
     if query:
         embedding = GPT4AllEmbeddings()
